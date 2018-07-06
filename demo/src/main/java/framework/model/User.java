@@ -1,15 +1,14 @@
 package framework.model;
 
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+
+import javax.persistence.*;
 
 /**
  * Created by speedjive at 11:00 on 2018/7/5
  */
 @Entity
+@Table(name = "user")
 public class User {
 
     @Id
