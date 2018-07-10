@@ -18,11 +18,15 @@ import java.util.Properties;
 @EnableJpaRepositories("framework.model.repository")
 public class JPAConfig {
 
-    @Autowired
-    private DataSource dataSource;
+    private final DataSource dataSource;
+
+    private final Environment env;
 
     @Autowired
-    private Environment env;
+    public JPAConfig(DataSource dataSource, Environment env) {
+        this.dataSource = dataSource;
+        this.env = env;
+    }
 
     @Bean
     public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
@@ -39,7 +43,8 @@ public class JPAConfig {
         Properties properties = new Properties();
         properties.put("hibernate.show_sql", "true");
 //        properties.put("hibernate.dialect", "org.hibernate.dialect.MySQLDialect");
-        properties.put("hibernate.id.new_generator_mappings","false");
+        properties.put("hibernate.id.new_generator_mappings", "false");
+        properties.put("hibernate.hbm2ddl.auto", env.getRequiredProperty("spring.jpa.properties.hibernate.hbm2ddl.auto"));
         return properties;
     }
 }
