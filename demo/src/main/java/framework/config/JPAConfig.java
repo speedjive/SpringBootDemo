@@ -14,19 +14,16 @@ import java.util.Properties;
 /**
  * Created by speedjive at 9:08 on 2018/7/6
  */
+@SuppressWarnings("SpringJavaAutowiredFieldsWarningInspection")
 @Configuration
 @EnableJpaRepositories("framework.model.repository")
 public class JPAConfig {
 
-    private final DataSource dataSource;
-
-    private final Environment env;
+    @Autowired
+    private DataSource dataSource;
 
     @Autowired
-    public JPAConfig(DataSource dataSource, Environment env) {
-        this.dataSource = dataSource;
-        this.env = env;
-    }
+    private Environment env;
 
     @Bean
     public LocalContainerEntityManagerFactoryBean entityManagerFactory() {

@@ -11,15 +11,12 @@ import javax.sql.DataSource;
 /**
  * Created by speedjive at 9:11 on 2018/7/6
  */
+@SuppressWarnings("SpringJavaAutowiredFieldsWarningInspection")
 @Configuration
 public class DBConfig {
 
-    private final Environment env;
-
     @Autowired
-    public DBConfig(Environment env) {
-        this.env = env;
-    }
+    private Environment env;
 
     @Bean
     public DataSource dataSource() {
